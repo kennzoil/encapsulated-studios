@@ -8,6 +8,14 @@ lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill
 
 # mash 'yes' on collectstatic
 printf 'yes' | ./manage.py collectstatic 2>&1 >/dev/null
+echo "Static files collected."
 
-# re-run local server
-nohup ./manage.py runserver 2>&1 >/dev/null &
+# if given "kill" argument, kill the process and notify user
+if [[ "$*" == kill ]]
+then
+    echo "Process at port 8000 killed."
+else
+    # re-run local server
+    nohup ./manage.py runserver 2>&1 >/dev/null &
+    echo "View update at http://127.0.0.1:8000/"
+fi
