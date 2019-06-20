@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # modules from requirements.txt
     'bootstrap4',
     # internal applications
+    'app_template',
 ]
 
 MIDDLEWARE = [

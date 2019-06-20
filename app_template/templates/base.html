@@ -1,0 +1,45 @@
+{% load static %}
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- extend the title block in an html file -->
+        <title>{% block title %}Default Title{% endblock %}</title>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+{#        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>#}
+
+        <!-- site-wide google fonts (font-family: 'Varela Round', sans-serif;) -->
+{#        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">#}
+
+        <!-- favicon -->
+{#        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">#}
+{#        <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">#}
+
+        <!-- extend the head block in an html file -->
+        {% block head %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <!-- extend the header block in an html file -->
+        {% block header %}
+        {% endblock %}
+
+        <!-- extend the content block in an html file -->
+        {% block content %}{% endblock %}
+
+        <!-- extend the footer block in an html file -->
+        {% block footer %}{% endblock %}
+
+        <!-- extend javascript block in an html file -->
+        {% block javascript %}
+        {% endblock %}
+    </body>
+
+</html>
