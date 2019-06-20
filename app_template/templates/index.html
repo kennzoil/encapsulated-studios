@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+
 {% load static %}
+
+{% load bootstrap4 %}
+{% bootstrap_css %}
 
 {% block title %}Home{% endblock %}
 
 {% block head %}
-{#{% include 'heads/main_head.html' %}#}
-{#{% include 'heads/home_head.html' %}#}
+{% include 'heads/base_head.html' %}
+{% include 'heads/index_head.html' %}
 {% endblock %}
 
 {% block header %}
@@ -14,10 +18,21 @@
 
 {% block content %}
 
-    Hello, world!
+
 
 <div class='container'>
+
+    <!-- test row -->
     <div class='row'>
+        <div class="col-xs-6">
+            Hello,
+        </div>
+        <div class="col-xs-6">
+            world!
+        </div>
+    </div>
+
+    <div class="row">
         <div class='col-xs-12 col-md-6'>
             <div class='home-section'>
 {#                {% include 'assets/home/news_section.html' %}#}
