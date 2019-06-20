@@ -1,0 +1,13 @@
+#! /bin/bash
+
+# django port
+PORT_NUMBER=8000
+
+# kill current django process
+lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill
+
+# mash 'yes' on collectstatic
+printf 'yes' | ./manage.py collectstatic 2>&1 >/dev/null
+
+# re-run local server
+nohup ./manage.py runserver 2>&1 >/dev/null &
