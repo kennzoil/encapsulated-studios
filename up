@@ -1,0 +1,13 @@
+#! /bin/bash
+
+echo "fetching upstream...";
+git fetch upstream master;
+sleep 1;
+
+echo "pulling updates from upstream...";
+git pull upstream master;
+sleep 1;
+
+echo "pushing updates to origin.";
+git push origin master;
+sleep 1;
