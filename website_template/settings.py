@@ -84,11 +84,16 @@ WSGI_APPLICATION = 'website_template.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    # TODO - change db name to <database_name>
-    'default': {'ENGINE': 'django.db.backends.postgresql', 'NAME': '', }                # DEV
-    # 'default': dj_database_url.config()                                               # PROD
-}
+
+if DEBUG:
+    DATABASES = {
+        # TODO - change db name to <database_name>
+        'default': { 'ENGINE': 'django.db.backends.postgresql', 'NAME': '', }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.config()
+    }
 
 
 # Password validation
