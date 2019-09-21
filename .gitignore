@@ -2,5 +2,8 @@
 **.idea**
 **.pyc
 
+package.json
+package-lock.json
+node_modules/*
 staticfiles/*
 venv/*
