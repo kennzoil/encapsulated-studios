@@ -1,0 +1,15 @@
+#! /bin/bash
+
+printf "\nFetching upstream...\n";
+git fetch upstream master;
+sleep 1;
+
+printf "\nPulling updates from upstream...\n";
+git pull upstream master;
+sleep 1;
+
+printf "\nPushing updates to origin.\n";
+git push origin master;
+sleep 1;
+
+printf "\n";
