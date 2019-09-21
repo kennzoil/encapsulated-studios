@@ -28,8 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
+# Applications installed in our project
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # modules from requirements.txt
     'bootstrap4',
+    'pipeline',
     # internal applications
     'app_template',
 ]
@@ -129,7 +129,24 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+# django-pipeline configuration
+
+PIPELINE = {}
+
+PIPELINE['COMPILERS'] = (
+    'pipeline.compilers.es6.ES6Compiler',
+    'pipeline.compilers.sass.SASSCompiler',
+)
+
+
 # Static files (CSS, JavaScript, Images)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 APP_NAME = 'app_template'
@@ -143,5 +160,5 @@ STATICFILES_DIRS = [
 ]
 
 # Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# https://django-pipeline.readthedocs.io/en/latest/installation.html
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
