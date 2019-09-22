@@ -2,7 +2,8 @@
 **.idea**
 **.pyc
 
-package-lock.json
-node_modules/*
-staticfiles/*
+env/*
 venv/*
+staticfiles/*
+lib/dependencies/node_modules/
+lib/dependencies/package-lock.json
