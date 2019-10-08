@@ -1,24 +1,50 @@
 #! /bin/bash
 
-### set up local environment with the following process:
+############################################################################################
+#
+#                           ##### DEPENDENCY WARNING #####
+#
+#   In order for this script to work, the following must be installed on your local machine:
+#
+#       - virtualenv    (v16.0.0 or greater)
+#       - pip           (v19.1 or greater)
+#       - git           (latest)
+#   
+#  For details on how to install virtualenv and pip, see https://github.com/bellydrum/website-template#dev-tools
+#
+#                           ##### VERSION CONTROL WARNING #####
+#
+#   In order for this script to work, you must have the following remote repositories linked to your local git repository:
+#
+#       - origin        (your personal fork of the master repository)
+#       - upstream      (the master repository)
+#
+#  For details on linking these remote repositories to your local git repository, see 
+#
+############################################################################################
+
+##### This script will set up your local environment using the following process:
 #
 # Step 1. configure django environment
-#   - if local virtual environment doesn't exist, create one
+#   - if a local virtual environment doesn't exist:
+#       - create one
 #   - activate local virtual environment
-#   - install python dependencies
+#   - install python dependencies into the virtual environment
 #
-# 2. configure node environment
+# Step 2. configure node environment
 #   - add project node binaries to $PATH variable
 #   - remove and reinstall current node requirements
 #   - move node modules and package.json into lib/dependencies
 #   - create new symlinks
 #
-# 3. update local and remote repository with upstream changes
+# Step 3. update local and remote repository with upstream changes
 #   - run lib/scripts/update
 
-# filepaths
+# important project directories
 SCRIPTS_PATH='./lib/scripts'
 DEPENDENCIES_PATH='./lib/dependencies'
+
+# dependencies
 PYTHON_REQS="${DEPENDENCIES_PATH}/requirements.txt"
 NODE_REQS="${DEPENDENCIES_PATH}/node_modules/.bin"
 
