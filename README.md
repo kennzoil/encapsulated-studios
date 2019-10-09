@@ -148,6 +148,8 @@
 
 #### current middleware
 
+- *django-pipeline v1.6.14* - [docs](https://buildmedia.readthedocs.org/media/pdf/django-pipeline/1.6.14/django-pipeline.pdf) - Compresses and caches static files.
+
 - *psycopg2 v2.8.2* - [docs](http://initd.org/psycopg/docs/) - Why do we use [psycopg2](https://dba.stackexchange.com/questions/111969/what-exactly-is-psycopg2)?
 
     psycopg2 is Django middleware that is installed via `pip install -r requirements.txt`.
@@ -156,7 +158,7 @@
     
 - *babel >= v7.0* - [docs](https://babeljs.io/docs/en/) - allows us to write modern ES6+ Javascript and not worry about browser compatibility: we use Babel to transpile our ES6+ into ES5 before the deployment process.
 
-#### current frontent
+#### current frontend
 
 - *Bootstrap 4 v0.0.8* - [docs](https://django-bootstrap4.readthedocs.io/en/latest/index.html)
 

@@ -59,7 +59,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# TODO - change this to match <project_name>.urls
 ROOT_URLCONF = 'encapsulated-studios.urls'
 
 TEMPLATES = [
@@ -78,17 +77,15 @@ TEMPLATES = [
     },
 ]
 
-# TODO - change this to match <project_name>.wsgi.application
 WSGI_APPLICATION = 'encapsulated-studios.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 
 if DEBUG:
     DATABASES = {
-        # TODO - change db name to <database_name>
         'default': { 'ENGINE': 'django.db.backends.postgresql', 'NAME': 'encapsulated', }
     }
 else:
@@ -130,16 +127,20 @@ USE_L10N = True
 USE_TZ = True
 
 
+# whitenoise configuration
+
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True
+
 
 # django-pipeline configuration
 
-PIPELINE = {}
-
-PIPELINE['COMPILERS'] = (
-    'pipeline.compilers.es6.ES6Compiler',
-    'pipeline.compilers.sass.SASSCompiler',
-)
-
+PIPELINE = {
+    'PIPELINE_ENABLED': True,
+    'COMPILERS': (
+        'pipeline.compilers.es6.ES6Compiler',
+        'pipeline.compilers.sass.SASSCompiler',
+    )
+}
 
 # Static files (CSS, JavaScript, Images)
 
@@ -152,13 +153,10 @@ STATICFILES_FINDERS = (
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 APP_NAME = 'app'
 STATIC_URL = '/static/'
-# location of destination for collected static files
+
+# destination for files collected by the collectstatic command
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# places for collectstatic to find static files.
-STATICFILES_DIRS = [
-    os.path.join(APP_NAME, 'static'),
-]
 
 # Simplified static file serving.
 # https://django-pipeline.readthedocs.io/en/latest/installation.html

@@ -1,4 +1,13 @@
 {
+  "name": "encapsulated-studios",
+  "version": "0.0.1",
+  "scripts": {
+    "transpileJS": "rm -rf app/static/js/lib/* && babel app/static/js/src/ --out-file app/static/js/lib/app.js",
+    "watchAndTranspileJS": "babel app/static/js/src/ --watch --out-file app/static/js/lib/app.js"
+  },
+  "engines": {
+    "node": "10.15.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0"
