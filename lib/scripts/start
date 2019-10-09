@@ -1,0 +1,86 @@
+#! /bin/bash
+
+############################################################################################
+#
+#                           ##### DEPENDENCY WARNING #####
+#
+#   In order for this script to work, the following must be installed on your local machine:
+#
+#       - virtualenv    (v16.0.0 or greater)
+#       - pip           (v19.1 or greater)
+#       - git           (latest)
+#   
+#  For details on how to install virtualenv and pip, see https://github.com/bellydrum/website-template#dev-tools
+#
+#                           ##### VERSION CONTROL WARNING #####
+#
+#   In order for this script to work, you must have the following remote repositories linked to your local git repository:
+#
+#       - origin        (your personal fork of the master repository)
+#       - upstream      (the master repository)
+#
+#  For details on linking these remote repositories to your local git repository, see 
+#
+############################################################################################
+
+##### This script will set up your local environment using the following process:
+#
+# Step 1. configure django environment
+#   - if a local virtual environment doesn't exist:
+#       - create one
+#   - activate local virtual environment
+#   - install python dependencies into the virtual environment
+#
+# Step 2. configure node environment
+#   - add project node binaries to $PATH variable
+#   - remove and reinstall current node requirements
+#   - move node modules and package.json into lib/dependencies
+#   - create new symlinks
+#
+# Step 3. update local and remote repository with upstream changes
+#   - run lib/scripts/update
+
+# important project directories
+SCRIPTS_PATH='./lib/scripts'
+DEPENDENCIES_PATH='./lib/dependencies'
+
+# dependencies
+PYTHON_REQS="${DEPENDENCIES_PATH}/requirements.txt"
+NODE_REQS="${DEPENDENCIES_PATH}/node_modules/.bin"
+
+warn_user() {
+    printf "\nWARNING:\nUse this script with the following command: $ source dev-start\n\n"
+    exit
+}
+
+# assert file was sourced
+[[ "${BASH_SOURCE[0]}" == "${0}" ]] && warn_user; printf "Setting up local dev environment...\n"; sleep 5;
+
+# Step 1. configure python virtual environment
+
+results=( $(find */bin/activate) )
+if (( ${#results[@]} )); then
+    source ${SCRIPTS_PATH}/activate $results
+    pip uninstall -y -r ${PYTHON_REQS};
+else
+    virtualenv env;
+    source ${SCRIPTS_PATH}/activate env/bin/activate
+fi
+pip install -r ${PYTHON_REQS}
+
+# Step 2. configure node environment
+
+export PATH=$PATH:${NODE_REQS}
+printf "\nAdded ${NODE_REQS} to path:\n"
+printf "${PATH}\n\n"
+
+printf "\nRefreshing node modules...\n"; sleep 1
+rm -rf ${DEPENDENCIES_PATH}/node_modules/*; npm --prefix ${DEPENDENCIES_PATH} install ${DEPENDENCIES_PATH}
+mv node_modules/ package.json package-lock.json ${DEPENDENCIES_PATH}
+ln -s lib/dependencies/node_modules/ node_modules
+ln -s lib/dependencies/package.json package.json
+
+# Step 3. update local and remote repository with upstream changes
+./${SCRIPTS_PATH}/update
+
+printf "\nThis project is completely up to date.\n\n"
