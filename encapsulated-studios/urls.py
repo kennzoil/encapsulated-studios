@@ -1,4 +1,4 @@
-"""website_template URL Configuration
+"""encapsulated-studios URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -20,6 +20,6 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'', include('app_template.urls')),      # TODO - replace 'app_template.urls' with '<app_name>.urls'
+    url(r'', include('app.urls')),
     url(r'', include('django.contrib.auth.urls')),
 ]

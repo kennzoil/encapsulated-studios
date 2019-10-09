@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'pipeline',
     # internal applications
-    'app_template',
+    'app',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +59,7 @@ MIDDLEWARE = [
 ]
 
 # TODO - change this to match <project_name>.urls
-ROOT_URLCONF = 'website_template.urls'
+ROOT_URLCONF = 'encapsulated-studios.urls'
 
 TEMPLATES = [
     {
@@ -78,7 +78,7 @@ TEMPLATES = [
 ]
 
 # TODO - change this to match <project_name>.wsgi.application
-WSGI_APPLICATION = 'website_template.wsgi.application'
+WSGI_APPLICATION = 'encapsulated-studios.wsgi.application'
 
 
 # Database
@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'website_template.wsgi.application'
 if DEBUG:
     DATABASES = {
         # TODO - change db name to <database_name>
-        'default': { 'ENGINE': 'django.db.backends.postgresql', 'NAME': '', }
+        'default': { 'ENGINE': 'django.db.backends.postgresql', 'NAME': 'encapsulated', }
     }
 else:
     DATABASES = {
@@ -149,7 +149,7 @@ STATICFILES_FINDERS = (
 )
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-APP_NAME = 'app_template'
+APP_NAME = 'app'
 STATIC_URL = '/static/'
 # location of destination for collected static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
