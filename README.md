@@ -156,6 +156,10 @@
     
 - *babel >= v7.0* - [docs](https://babeljs.io/docs/en/) - allows us to write modern ES6+ Javascript and not worry about browser compatibility: we use Babel to transpile our ES6+ into ES5 before the deployment process.
 
+#### current frontent
+
+- *Bootstrap 4 v0.0.8* - [docs](https://django-bootstrap4.readthedocs.io/en/latest/index.html)
+
 #### current deployment tools
 
 - *Docker* - [docs](https://docs.docker.com/) - Why do we [use Docker](https://ropenscilabs.github.io/r-docker-tutorial/01-what-and-why.html)?
