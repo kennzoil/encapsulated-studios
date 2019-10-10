@@ -101,4 +101,9 @@ ln -s lib/dependencies/package.json package.json
 
 ./${SCRIPTS_PATH}/update
 
-printf "\nThis project is completely up to date.\n\n"
+printf "\nThis project is completely up to date.\n\n"; sleep 2
+
+##################################################
+#####--- Step 4. transpile ES6+ and SCSS and start local dev server
+##################################################
+./dev-restart
