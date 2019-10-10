@@ -6,7 +6,8 @@
     "watchAndTranspileJS": "babel app/static/js/src/ --watch --out-file app/static/js/lib/app.js"
   },
   "engines": {
-    "node": "10.15.0"
+    "node": "10.15.0",
+    "npm": "6.7.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",

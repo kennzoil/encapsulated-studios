@@ -129,7 +129,7 @@ USE_TZ = True
 
 # whitenoise configuration
 
-WHITENOISE_KEEP_ONLY_HASHED_FILES = True
+# WHITENOISE_KEEP_ONLY_HASHED_FILES = True
 
 
 # django-pipeline configuration

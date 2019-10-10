@@ -5,7 +5,7 @@ lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill
 
 # transpile all ES6+ to ES5 and compress all static files into static root
 npm run transpileJS
-python manage.py collectstatic --noinput -i *.es6
+python manage.py collectstatic --noinput -i *.es6 -i *.scss
 echo "Static files collected."
 
 if [[ "$*" == kill ]]
