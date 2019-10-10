@@ -162,6 +162,11 @@
 
 - *Bootstrap 4 v0.0.8* - [docs](https://django-bootstrap4.readthedocs.io/en/latest/index.html)
 
+- *SCSS* - [docs](https://sass-lang.com/documentation) - why do we [use SCSS](https://alistapart.com/article/why-sass/)?
+
+    - SCSS is a superset of CSS (which means you can write pure CSS in a `.scss` file) that allows us to use many more tools unavailable in CSS, such as variables and modules.
+    - SCSS must be transpiled down to CSS before the deployment process; we do this using the node module [scss-compile](https://www.npmjs.com/package/scss-compile), and adding a script to our `package.json`.
+
 #### current deployment tools
 
 - *Docker* - [docs](https://docs.docker.com/) - Why do we [use Docker](https://ropenscilabs.github.io/r-docker-tutorial/01-what-and-why.html)?
@@ -200,11 +205,6 @@
 #### deployment tools
 
 #### frontend
-- *SCSS* - [docs](https://sass-lang.com/documentation) - why would we want to [use SCSS](https://alistapart.com/article/why-sass/)?
-
-    - SCSS is a superset of CSS (which means you can write pure CSS in a `.scss` file) that allows us to use many more tools unavailable in CSS, such as variables and modules.
-    - SCSS must be transpiled down to CSS before the deployment process; we can do this using the node module [scss-compile](https://www.npmjs.com/package/scss-compile), and adding a script to our `package.json`.
-
 
 #### backend
 
