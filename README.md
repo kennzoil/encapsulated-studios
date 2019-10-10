@@ -162,6 +162,11 @@
 
 - *Bootstrap 4 v0.0.8* - [docs](https://django-bootstrap4.readthedocs.io/en/latest/index.html)
 
+- *SCSS* - [docs](https://sass-lang.com/documentation) - why do we [use SCSS](https://alistapart.com/article/why-sass/)?
+
+    - SCSS is a superset of CSS (which means you can write pure CSS in a `.scss` file) that allows us to use many more tools unavailable in CSS, such as variables and modules.
+    - SCSS must be transpiled down to CSS before the deployment process; we do this using the node module [scss-compile](https://www.npmjs.com/package/scss-compile), and adding a script to our `package.json`.
+
 #### current deployment tools
 
 - *Docker* - [docs](https://docs.docker.com/) - Why do we [use Docker](https://ropenscilabs.github.io/r-docker-tutorial/01-what-and-why.html)?
@@ -182,7 +187,7 @@
 
 - **for developer use:**
     
-    - `./restart` (symlinked to `./lib/scripts/restart`): **Run this whenever you want to see your local CSS and Javascript changes in your browser.** Running this script from the project root will stop the Django development server process on port 8000, execute `python manage.py collectstatic`, and restart the Django development server on port 8000. The `collectstatic` command makes copies of your CSS and Javascript files and puts them into a specific folder that Django searches through whenever the application requests CSS or Javascript files. Running `./restart` is a quick way to update this folder with your most recent code changes.
+    - `./dev-restart` (symlinked to `./lib/scripts/restart`): **Run this whenever you want to see your local CSS and Javascript changes in your browser.** Running this script from the project root will stop the Django development server process on port 8000, execute `python manage.py collectstatic`, and restart the Django development server on port 8000. The `collectstatic` command makes copies of your CSS and Javascript files and puts them into a specific folder that Django searches through whenever the application requests CSS or Javascript files. Running `./restart` is a quick way to update this folder with your most recent code changes.
     
     - `./dev-update` (symlinked to `./lib/scripts/dev-update`): **Run this if you would like to synchronize your repositories with master.** Running this from the project root will fetch upstream changes, pull those upstream changes into your local repository, and push your local repository to your fork.
     
@@ -200,11 +205,6 @@
 #### deployment tools
 
 #### frontend
-- *SCSS* - [docs](https://sass-lang.com/documentation) - why would we want to [use SCSS](https://alistapart.com/article/why-sass/)?
-
-    - SCSS is a superset of CSS (which means you can write pure CSS in a `.scss` file) that allows us to use many more tools unavailable in CSS, such as variables and modules.
-    - SCSS must be transpiled down to CSS before the deployment process; we can do this using the node module [scss-compile](https://www.npmjs.com/package/scss-compile), and adding a script to our `package.json`.
-
 
 #### backend
 

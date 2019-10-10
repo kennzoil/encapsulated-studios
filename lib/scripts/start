@@ -1,8 +1,16 @@
 #! /bin/bash
 
-############################################################################################
+##############################--- ABOUT THIS SCRIPT ---#####################################
 #
-#                           ##### DEPENDENCY WARNING #####
+#   This script is supposed to be an simple one-stop way to prepare for a dev session.
+#
+#   See DEPENDENCY WARNING and VERSION CONTROL WARNING below for requirements.
+#
+#   See PROCESS below for a step by step explanation of what this script is doing each time you run it.
+#
+#   Written by David Maness and Guideon Berry
+#
+##############################--- DEPENDENCY WARNING ---####################################
 #
 #   In order for this script to work, the following must be installed on your local machine:
 #
@@ -12,33 +20,34 @@
 #   
 #  For details on how to install virtualenv and pip, see https://github.com/bellydrum/website-template#dev-tools
 #
-#                           ##### VERSION CONTROL WARNING #####
+##############################--- VERSION CONTROL WARNING ---###############################
 #
-#   In order for this script to work, you must have the following remote repositories linked to your local git repository:
+#   In order for this script to work, you must have these remote repositories linked to your local repository:
 #
-#       - origin        (your personal fork of the master repository)
-#       - upstream      (the master repository)
+#       - origin        (URL of your personal fork of the master repository)
+#       - upstream      (URL of the master repository from which origin is forked)
 #
-#  For details on linking these remote repositories to your local git repository, see 
+#   Note: a Heroku remote link, while necessary for staging, is not required for this script to run.
 #
-############################################################################################
+###############################--- WHAT THIS SCRIPT DOES ---#################################
+#
+#   Step 1. configure django environment
+#       - if a local virtual environment doesn't exist:
+#           - create one
+#       - activate local virtual environment
+#       - install python dependencies into the virtual environment
+#
+#   Step 2. configure node environment
+#       - add project node binaries to $PATH variable
+#       - remove and reinstall current node requirements
+#       - move node modules and package.json into lib/dependencies
+#       - create new symlinks
+#
+#   Step 3. update local and remote repository with upstream changes
+#       - run lib/scripts/update
+#
+#############################################################################################
 
-##### This script will set up your local environment using the following process:
-#
-# Step 1. configure django environment
-#   - if a local virtual environment doesn't exist:
-#       - create one
-#   - activate local virtual environment
-#   - install python dependencies into the virtual environment
-#
-# Step 2. configure node environment
-#   - add project node binaries to $PATH variable
-#   - remove and reinstall current node requirements
-#   - move node modules and package.json into lib/dependencies
-#   - create new symlinks
-#
-# Step 3. update local and remote repository with upstream changes
-#   - run lib/scripts/update
 
 # important project directories
 SCRIPTS_PATH='./lib/scripts'
@@ -54,25 +63,31 @@ warn_user() {
 }
 
 # assert file was sourced
-[[ "${BASH_SOURCE[0]}" == "${0}" ]] && warn_user; printf "Setting up local dev environment...\n"; sleep 5;
+[[ "${BASH_SOURCE[0]}" == "${0}" ]] && warn_user; printf "\nSetting up local dev environment...\n"; sleep 2;
 
-# Step 1. configure python virtual environment
+##################################################
+#####--- Step 1. configure python virtual environment
+##################################################
 
 results=( $(find */bin/activate) )
 if (( ${#results[@]} )); then
     source ${SCRIPTS_PATH}/activate $results
+    printf "\nUninstalling python dependencies...\n"; sleep 2;
     pip uninstall -y -r ${PYTHON_REQS};
 else
     virtualenv env;
     source ${SCRIPTS_PATH}/activate env/bin/activate
 fi
+printf "\nInstalling python dependencies...\n"; sleep 2;
 pip install -r ${PYTHON_REQS}
 
-# Step 2. configure node environment
+##################################################
+#####--- Step 2. configure node environment
+##################################################
 
 export PATH=$PATH:${NODE_REQS}
 printf "\nAdded ${NODE_REQS} to path:\n"
-printf "${PATH}\n\n"
+printf "${PATH}\n"
 
 printf "\nRefreshing node modules...\n"; sleep 1
 rm -rf ${DEPENDENCIES_PATH}/node_modules/*; npm --prefix ${DEPENDENCIES_PATH} install ${DEPENDENCIES_PATH}
@@ -80,7 +95,15 @@ mv node_modules/ package.json package-lock.json ${DEPENDENCIES_PATH}
 ln -s lib/dependencies/node_modules/ node_modules
 ln -s lib/dependencies/package.json package.json
 
-# Step 3. update local and remote repository with upstream changes
+##################################################
+#####--- Step 3. propagate any upstream changes across local and remote repositories
+##################################################
+
 ./${SCRIPTS_PATH}/update
 
-printf "\nThis project is completely up to date.\n\n"
+printf "\nThis project is completely up to date.\n\n"; sleep 2
+
+##################################################
+#####--- Step 4. transpile ES6+ and SCSS and start local dev server
+##################################################
+./dev-restart

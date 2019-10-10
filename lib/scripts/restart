@@ -1,10 +1,13 @@
 #! /bin/bash
 
+# kill current Django process
 PORT_NUMBER=8000
 lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill
 
-# transpile all ES6+ to ES5 and compress all static files into static root
-npm run transpileJS
+# transpile all ES6+ and SCSS
+npm run transpile
+
+# compress static files into /staticfiles/
 python manage.py collectstatic --noinput -i *.es6 -i *.scss
 echo "Static files collected."
 
@@ -13,5 +16,5 @@ then
     echo "Process at port 8000 killed."
 else
     nohup ./manage.py runserver 2>&1 >/dev/null &
-    echo "View update at http://127.0.0.1:8000/"
+    printf "\n\nView application at http://127.0.0.1:8000/\n\n"
 fi
