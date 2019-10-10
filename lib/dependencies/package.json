@@ -2,8 +2,9 @@
   "name": "encapsulated-studios",
   "version": "0.0.1",
   "scripts": {
+    "transpile": "npm run transpileJS && npm run transpileSCSS",
     "transpileJS": "rm -rf app/static/js/lib/* && babel app/static/js/src/ --out-file app/static/js/lib/app.js",
-    "watchAndTranspileJS": "babel app/static/js/src/ --watch --out-file app/static/js/lib/app.js"
+    "transpileSCSS": "rm -rf app/static/css/lib/* && node-sass app/static/css/src/* -oq app/static/css/lib/main.css"
   },
   "engines": {
     "node": "10.15.0",
@@ -11,7 +12,9 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
-    "@babel/core": "^7.6.0"
+    "@babel/core": "^7.6.0",
+    "node-sass": "^4.12.0",
+    "scss-compile": "^0.1.7"
   },
   "dependencies": {
     "@babel/preset-env": "^7.6.0"
