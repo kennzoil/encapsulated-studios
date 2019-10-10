@@ -15,7 +15,7 @@
     
     - [hook up your git repo connections](#hook-up-git)
     
-    - [create your local dev environment](#create-your-local-dev-environment)
+    - [create your local dev environment](#create-your-local-virtual-dev-environment)
     
 - [**we are using:**](#technologies-we-are-using)
 
@@ -51,7 +51,7 @@
 - each time you sit down to work on the project, follow these steps:
     
     - `cd` into the project root (eg. `cd ~/development/ProjectName/`).
-    - in your terminal, run the command `source dev-start`.
+    - in your terminal, run [this command](#current-custom-scripts): `source dev-start`.
     
     **Note:** Remember that for `dev-start` to work, you **must** have *virtualenv*, *pip*, and *git* [installed](#for-developers-just-getting-started) **and** the proper remote repositories [linked](#for-developers-just-getting-started) to your local git repository.
 
