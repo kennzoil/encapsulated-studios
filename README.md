@@ -182,7 +182,7 @@
 
 - **for developer use:**
     
-    - `./restart` (symlinked to `./lib/scripts/restart`): **Run this whenever you want to see your local CSS and Javascript changes in your browser.** Running this script from the project root will stop the Django development server process on port 8000, execute `python manage.py collectstatic`, and restart the Django development server on port 8000. The `collectstatic` command makes copies of your CSS and Javascript files and puts them into a specific folder that Django searches through whenever the application requests CSS or Javascript files. Running `./restart` is a quick way to update this folder with your most recent code changes.
+    - `./dev-restart` (symlinked to `./lib/scripts/restart`): **Run this whenever you want to see your local CSS and Javascript changes in your browser.** Running this script from the project root will stop the Django development server process on port 8000, execute `python manage.py collectstatic`, and restart the Django development server on port 8000. The `collectstatic` command makes copies of your CSS and Javascript files and puts them into a specific folder that Django searches through whenever the application requests CSS or Javascript files. Running `./restart` is a quick way to update this folder with your most recent code changes.
     
     - `./dev-update` (symlinked to `./lib/scripts/dev-update`): **Run this if you would like to synchronize your repositories with master.** Running this from the project root will fetch upstream changes, pull those upstream changes into your local repository, and push your local repository to your fork.
     

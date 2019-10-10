@@ -87,7 +87,7 @@ pip install -r ${PYTHON_REQS}
 
 export PATH=$PATH:${NODE_REQS}
 printf "\nAdded ${NODE_REQS} to path:\n"
-printf "${PATH}\n\n"
+printf "${PATH}\n"
 
 printf "\nRefreshing node modules...\n"; sleep 1
 rm -rf ${DEPENDENCIES_PATH}/node_modules/*; npm --prefix ${DEPENDENCIES_PATH} install ${DEPENDENCIES_PATH}

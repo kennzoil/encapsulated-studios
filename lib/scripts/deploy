@@ -4,7 +4,7 @@ if [ -z "$1" ]; then
     printf "\nUsage:\n\t$ ./deploy staging\n\t\tor\n\t$ ./deploy master\n\n"
 fi
 
-./restart
+./dev-restart
 
 if [ $1 = "staging" ]; then
     git push heroku-staging master
