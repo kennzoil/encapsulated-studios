@@ -1,10 +1,13 @@
 #! /bin/bash
 
+# kill current Django process
 PORT_NUMBER=8000
 lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs kill
 
-# transpile all ES6+ to ES5 and compress all static files into static root
+# transpile all ES6+ to ES5
 npm run transpileJS
+
+# compress static files into /staticfiles/
 python manage.py collectstatic --noinput -i *.es6 -i *.scss
 echo "Static files collected."
 
